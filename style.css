@@ -1,0 +1,210 @@
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: linear-gradient(rgba(52,79,31,0.6), rgba(52,79,31,0.6));
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  color: #344F1F; 
+}
+
+/* ========== Header ========== */
+.header {
+  text-align: center;
+  padding: 40px 20px;
+  background-color: rgba(249,245,240,0.7); 
+  border-bottom: 4px solid #F4991A;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 2.5rem;
+  color: #344F1F;
+}
+
+.header p {
+  margin-top: 10px;
+  color: #344F1F;
+}
+
+/* ========== Navbar ========== */
+.navbar {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  background-color: rgba(242,234,211,0.8); 
+  padding: 15px;
+}
+
+.navbar a {
+  text-decoration: none;
+  color: #344F1F;
+  background-color: #F4991A;
+  padding: 10px 20px;
+  border-radius: 30px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.navbar a:hover {
+  background-color: #344F1F;
+  color: #F9F5F0;
+}
+
+/* ========== Welcome Section ========== */
+.welcome {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(249,245,240,0.7); 
+  margin: 40px auto;
+  padding: 40px;
+  max-width: 600px;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.welcome h2 {
+  color: #344F1F;
+  margin-bottom: 15px;
+}
+
+.welcome p {
+  color: #344F1F;
+  font-size: 1.2rem;
+}
+
+/* ========== About AICTE Section ========== */
+.about-aicte {
+  max-width: 1100px;
+  margin: 40px auto 60px;
+  padding: 24px;
+  background: rgba(249,245,240,0.7);
+  border-radius: 16px;
+  box-shadow: 0 10px 24px var(--primary-10);
+  border: 1px solid var(--primary-05);
+}
+
+.about-aicte h2 {
+  margin-top: 0;
+  color: var(--primary);
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+.about-aicte .badge {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  color: var(--white);
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  margin-bottom: 10px;
+  box-shadow: 0 6px 14px var(--primary-10);
+}
+
+.about-aicte h3 { 
+  color: var(--text); 
+  margin: 14px 0 6px; 
+}
+
+.about-aicte ul { 
+  margin: 8px 0 0 18px; 
+}
+
+.about-aicte li { 
+  margin: 6px 0; 
+}
+
+/* ========== Image Gallery ========== */
+.image-gallery {
+  position: relative;
+  width: 400px;
+  height: 300px;
+  margin: 0 auto;
+  border-radius: 16px;
+  background: rgba(244, 153, 26, 0.1);
+  overflow: hidden;
+}
+
+.image-gallery img {
+  position: absolute;
+  width: 320px;
+  height: 240px;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 12px 24px rgba(0,0,0,0.3);
+  border: 4px solid #F4991A;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  opacity: 0;
+}
+
+/* Fade and scale carousel animation */
+.image-gallery img:nth-child(1) {
+  animation: fadeScale 6s ease-in-out infinite;
+}
+
+.image-gallery img:nth-child(2) {
+  animation: fadeScale 6s ease-in-out infinite;
+  animation-delay: 2s;
+}
+
+.image-gallery img:nth-child(3) {
+  animation: fadeScale 6s ease-in-out infinite;
+  animation-delay: 4s;
+}
+
+/* YFP Gallery Styling */
+.yfp-gallery {
+  margin-top: 110px;
+  background: rgba(46, 125, 50, 0.1);
+  border: 2px solid #2E7D32;
+}
+
+.yfp-gallery img {
+  border: 4px solid #2E7D32;
+}
+
+/* Keyframes for fade and scale animation */
+@keyframes fadeScale {
+  0% { 
+    opacity: 0; 
+    transform: translate(-50%, -50%) scale(0.8) rotate(-5deg);
+  }
+  15% { 
+    opacity: 1; 
+    transform: translate(-50%, -50%) scale(1) rotate(0deg);
+  }
+  85% { 
+    opacity: 1; 
+    transform: translate(-50%, -50%) scale(1) rotate(0deg);
+  }
+  100% { 
+    opacity: 0; 
+    transform: translate(-50%, -50%) scale(0.8) rotate(5deg);
+  }
+}
+
+.image-gallery img:hover {
+  transform: translate(-50%, -50%) scale(1.1) !important;
+  box-shadow: 0 12px 24px rgba(244, 153, 26, 0.6);
+  z-index: 10;
+  animation-play-state: paused;
+}
+
+/* ========== Responsive Design ========== */
+@media (max-width: 900px) {
+  .about-grid { 
+    grid-template-columns: 1fr; 
+  }
+}

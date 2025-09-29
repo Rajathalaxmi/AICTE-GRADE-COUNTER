@@ -1,0 +1,72 @@
+/* === Background and layout === */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background:
+    linear-gradient(rgba(52,79,31,0.6), rgba(52,79,31,0.6)),
+    url("../images/garden-bg.jpg") center/cover no-repeat;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* === Registration form box === */
+.register-box {
+  background-color: rgba(249,245,240,0.9); /* F9F5F0 with transparency */
+  padding: 40px;
+  border-radius: 20px;
+  max-width: 400px;
+  width: 90%;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  text-align: center;
+}
+
+.register-box h2 {
+  color: #344F1F;  /* deep green */
+  margin-bottom: 20px;
+}
+
+/* === Labels & Inputs === */
+.register-box label {
+  display: block;
+  text-align: left;
+  margin: 10px 0 5px;
+  color: #344F1F;
+  font-weight: 600;
+}
+
+.register-box input[type="text"],
+.register-box input[type="email"],
+.register-box input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  margin-bottom: 15px;
+  font-size: 1rem;
+}
+
+/* === Submit button === */
+.register-box input[type="submit"] {
+  background-color: #F4991A; /* vibrant orange */
+  color: #F9F5F0;
+  border: none;
+  padding: 12px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+  width: 100%;
+}
+
+.register-box input[type="submit"]:hover {
+  background-color: #344F1F; /* deep green on hover */
+  color: #F9F5F0;
+}
+
+#message {
+  margin-top: 15px;
+  color: #344F1F;
+  font-weight: bold;
+}

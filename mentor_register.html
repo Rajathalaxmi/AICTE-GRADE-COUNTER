@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mentor Register – AICTE Grade Counter</title>
+  <link rel="stylesheet" href="theme.css" />
+  <link rel="stylesheet" href="mentor_register.css" />
+</head>
+<body>
+  <div class="register-box">
+    <h2>Mentor Registration</h2>
+
+    <form id="registerForm" action="/mentor-register" method="POST">
+      <label for="name">Full Name</label>
+      <input type="text" id="name" name="name" required />
+
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" required />
+
+      <label for="department">Department</label>
+      <input type="text" id="department" name="department" required />
+
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" required />
+
+      <label for="confirmPassword">Confirm Password</label>
+      <input type="password" id="confirmPassword" name="confirmPassword" required />
+
+      <input type="submit" value="Register" />
+    </form>
+
+    <p id="message"></p>
+
+    <!-- Link to login page -->
+    <p class="login-link">
+      Already have an account?
+      <a href="/mentor-login">Login here</a>
+    </p>
+  </div>
+
+  <script src="mentor_register.js"></script>
+</body>
+</html>

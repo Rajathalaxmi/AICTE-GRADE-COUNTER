@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Student Register – AICTE Grade Counter</title>
+  <link rel="stylesheet" href="theme.css" />
+  <link rel="stylesheet" href="s_register.css" />
+</head>
+<body>
+  <div class="register-box">
+    <h2>Student Registration</h2>
+
+    <form id="registerForm" action="/register" method="POST">
+      <label for="name">Full Name</label>
+      <input type="text" id="name" name="name" required />
+
+      <label for="usn">USN</label>
+      <input type="text" id="usn" name="usn" required />
+
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" required />
+
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" required />
+
+      <label for="confirmPassword">Confirm Password</label>
+      <input type="password" id="confirmPassword" name="confirmPassword" required />
+
+      <input type="submit" value="Register" />
+    </form>
+
+    <p id="message"></p>
+
+    <!-- 👇 Add this paragraph for the login link -->
+    <p class="login-link">
+      Already have an account?
+      <a href="/login">Login here</a>
+    </p>
+  </div>
+  
+
+  <script src="s_register.js"></script>
+</body>
+</html>

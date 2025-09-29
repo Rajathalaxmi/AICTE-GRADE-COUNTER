@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard - AICTE Grade Points</title>
+    <link rel="stylesheet" href="theme.css">
+    <link rel="stylesheet" href="student_dashboard.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1><i class="fas fa-graduation-cap"></i> AICTE Grade Points Dashboard</h1>
+                <div class="header-actions">
+                    <span id="welcomeMessage">Welcome, Student!</span>
+                    <button id="logoutBtn" class="logout-btn">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Profile Section -->
+            <section class="profile-section">
+                <div class="profile-card">
+                    <div class="profile-header">
+                        <div class="profile-image-container">
+                            <img id="profileImage" src="https://via.placeholder.com/120/4CAF50/white?text=Student" alt="Profile Picture" class="profile-image">
+                            <div class="profile-image-overlay">
+                                <i class="fas fa-camera"></i>
+                            </div>
+                        </div>
+                        <div class="profile-info">
+                            <h2 id="studentName">Loading...</h2>
+                            <p id="studentUSN">USN: Loading...</p>
+                            <p id="studentEmail">Email: Loading...</p>
+                            <div class="total-points">
+                                <i class="fas fa-star"></i>
+                                <span>Total Points: <strong id="totalPoints">0</strong></span>
+                            </div>
+                        </div>
+                        <button id="editProfileBtn" class="edit-profile-btn">
+                            <i class="fas fa-edit"></i> Edit Profile
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Quick Actions -->
+            <section class="quick-actions">
+                <div class="action-cards">
+                    <div class="action-card" id="addAICTEGradeCard">
+                        <i class="fas fa-award"></i>
+                        <h3>Add AICTE Grade</h3>
+                        <p>Upload proof and add your AICTE grade points</p>
+                    </div>
+                    <div class="action-card" id="addActivityCard">
+                        <i class="fas fa-plus-circle"></i>
+                        <h3>Add Activity</h3>
+                        <p>Record your extracurricular activities</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Content Tabs -->
+            <section class="content-tabs">
+                <div class="tab-buttons">
+                    <button class="tab-btn active" data-tab="aicte-grades">
+                        <i class="fas fa-medal"></i> AICTE Grades
+                    </button>
+                    <button class="tab-btn" data-tab="activities">
+                        <i class="fas fa-calendar-alt"></i> Activities
+                    </button>
+                    <button class="tab-btn" data-tab="events">
+                        <i class="fas fa-calendar-check"></i> Upcoming Events
+                    </button>
+                </div>
+
+                <!-- AICTE Grades Tab -->
+                <div id="aicte-grades" class="tab-content active">
+                    <div class="content-header">
+                        <h3><i class="fas fa-medal"></i> Your AICTE Grade Points</h3>
+                        <button id="addAICTEBtn" class="add-btn">
+                            <i class="fas fa-plus"></i> Add New Grade
+                        </button>
+                    </div>
+                    <div id="aicteGradesList" class="grades-list">
+                        <div class="loading">Loading AICTE grades...</div>
+                    </div>
+                </div>
+
+                <!-- Activities Tab -->
+                <div id="activities" class="tab-content">
+                    <div class="content-header">
+                        <h3><i class="fas fa-calendar-alt"></i> Your Activities</h3>
+                        <button id="addActivityBtn" class="add-btn">
+                            <i class="fas fa-plus"></i> Add New Activity
+                        </button>
+                    </div>
+                    <div id="activitiesList" class="activities-list">
+                        <div class="loading">Loading activities...</div>
+                    </div>
+                </div>
+
+                <!-- Events Tab -->
+                <div id="events" class="tab-content">
+                    <div class="content-header">
+                        <h3><i class="fas fa-calendar-check"></i> Upcoming Events</h3>
+                    </div>
+                    <div id="upcomingEventsList" class="events-list">
+                        <div class="loading">Loading events...</div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Modals -->
+    <!-- Profile Edit Modal -->
+    <div id="profileModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-user-edit"></i> Edit Profile</h3>
+                <span class="close" data-modal="profileModal">&times;</span>
+            </div>
+            <form id="profileForm" enctype="multipart/form-data">
+                <div class="form-content">
+                    <div class="form-group">
+                        <label for="profilePictureInput">Profile Picture:</label>
+                        <input type="file" id="profilePictureInput" name="profilePicture" accept="image/*">
+                    </div>
+                    <div class="form-group">
+                        <label for="nameInput">Name:</label>
+                        <input type="text" id="nameInput" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phoneInput">Phone:</label>
+                        <input type="tel" id="phoneInput" name="phone">
+                    </div>
+                    <div class="form-group">
+                        <label for="departmentInput">Department:</label>
+                        <input type="text" id="departmentInput" name="department">
+                    </div>
+                    <div class="form-group">
+                        <label for="yearInput">Year:</label>
+                        <select id="yearInput" name="year">
+                            <option value="">Select Year</option>
+                            <option value="1st Year">1st Year</option>
+                            <option value="2nd Year">2nd Year</option>
+                            <option value="3rd Year">3rd Year</option>
+                            <option value="4th Year">4th Year</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="semesterInput">Semester:</label>
+                        <select id="semesterInput" name="semester">
+                            <option value="">Select Semester</option>
+                            <option value="1">1st Semester</option>
+                            <option value="2">2nd Semester</option>
+                            <option value="3">3rd Semester</option>
+                            <option value="4">4th Semester</option>
+                            <option value="5">5th Semester</option>
+                            <option value="6">6th Semester</option>
+                            <option value="7">7th Semester</option>
+                            <option value="8">8th Semester</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="cancel-btn" data-modal="profileModal">Cancel</button>
+                    <button type="submit" class="submit-btn">Update Profile</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- AICTE Grade Modal -->
+    <div id="aicteModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-award"></i> Add AICTE Grade</h3>
+                <span class="close" data-modal="aicteModal">&times;</span>
+            </div>
+            <form id="aicteForm" enctype="multipart/form-data">
+                <div class="form-content">
+                    <div class="form-group">
+                        <label for="aicteActivityName">Activity Name:</label>
+                        <input type="text" id="aicteActivityName" name="activityName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="aictePoints">Points:</label>
+                        <input type="number" id="aictePoints" name="points" min="1" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="proofDocument">Proof Document (Image/PDF):</label>
+                        <input type="file" id="proofDocument" name="proofDocument" accept="image/*,.pdf" required>
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="cancel-btn" data-modal="aicteModal">Cancel</button>
+                    <button type="submit" class="submit-btn">Add Grade</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Activity Modal -->
+    <div id="activityModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-plus-circle"></i> Add Activity</h3>
+                <span class="close" data-modal="activityModal">&times;</span>
+            </div>
+            <form id="activityForm">
+                <div class="form-content">
+                    <div class="form-group">
+                        <label for="activityName">Activity Name:</label>
+                        <input type="text" id="activityName" name="activityName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="activityDescription">Description:</label>
+                        <textarea id="activityDescription" name="description" rows="3" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="activityPoints">Points:</label>
+                        <input type="number" id="activityPoints" name="points" min="1" required>
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="cancel-btn" data-modal="activityModal">Cancel</button>
+                    <button type="submit" class="submit-btn">Add Activity</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Success/Error Messages -->
+    <div id="messageContainer" class="message-container"></div>
+
+    <script src="student_dashboard.js"></script>
+</body>
+</html>

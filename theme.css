@@ -1,0 +1,35 @@
+/* Global Theme Variables */
+:root {
+  /* Core palette */
+  --primary: #8B5CF6;       /* Lavender */
+  --secondary: #4C1D95;     /* Deep purple */
+  --accent: #FBBF24;        /* Sunset yellow */
+  --bg: #FAFAF9;            /* Background */
+  --text: #374151;          /* Neutral text */
+
+  /* Common neutrals */
+  --white: #ffffff;
+  --black: #000000;
+
+  /* Alpha variants (approx.) */
+  --primary-05: #8B5CF60D;  /* 5% */
+  --primary-10: #8B5CF61A;  /* 10% */
+  --secondary-10: #4C1D951A;/* 10% */
+  --accent-10: #FBBF241A;   /* 10% */
+}
+
+html, body {
+  color: var(--text);
+  background-color: var(--bg);
+}
+
+/* Utility helpers */
+.text-primary { color: var(--primary) !important; }
+.text-secondary { color: var(--secondary) !important; }
+.text-accent { color: var(--accent) !important; }
+.bg-primary { background-color: var(--primary) !important; }
+.bg-secondary { background-color: var(--secondary) !important; }
+.bg-accent { background-color: var(--accent) !important; }
+.border-primary { border-color: var(--primary) !important; }
+.border-secondary { border-color: var(--secondary) !important; }
+.border-accent { border-color: var(--accent) !important; }

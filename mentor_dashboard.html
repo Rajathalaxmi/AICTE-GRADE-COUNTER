@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mentor Dashboard - AICTE Grade Management</title>
+    <link rel="stylesheet" href="theme.css">
+    <link rel="stylesheet" href="mentor_dashboard.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1><i class="fas fa-chalkboard-teacher"></i> Mentor Dashboard</h1>
+                <div class="header-actions">
+                    <span id="welcomeMessage">Welcome, Mentor!</span>
+                    <button id="logoutBtn" class="logout-btn">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Mentor Profile Section -->
+            <section class="profile-section">
+                <div class="profile-card">
+                    <div class="profile-header">
+                        <div class="profile-info">
+                            <h2 id="mentorName">Loading...</h2>
+                            <p id="mentorEmail">Email: Loading...</p>
+                            <p id="mentorDepartment">Department: Loading...</p>
+                        </div>
+                        <div class="profile-stats">
+                            <div class="stat-item">
+                                <i class="fas fa-calendar-alt"></i>
+                                <span>Events: <strong id="eventCount">0</strong></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Quick Actions -->
+            <section class="quick-actions">
+                <div class="action-cards">
+                    <div class="action-card" id="searchStudentCard">
+                        <i class="fas fa-search"></i>
+                        <h3>Search Student</h3>
+                        <p>Find student by USN and view their progress</p>
+                    </div>
+                    <div class="action-card" id="addEventCard">
+                        <i class="fas fa-calendar-plus"></i>
+                        <h3>Add Event</h3>
+                        <p>Create upcoming events for students</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Content Tabs -->
+            <section class="content-tabs">
+                <div class="tab-buttons">
+                    <button class="tab-btn active" data-tab="student-search">
+                        <i class="fas fa-user-graduate"></i> Student Management
+                    </button>
+                    <button class="tab-btn" data-tab="events">
+                        <i class="fas fa-calendar"></i> Event Management
+                    </button>
+                </div>
+
+                <!-- Student Search Tab -->
+                <div id="student-search" class="tab-content active">
+                    <div class="content-header">
+                        <h3><i class="fas fa-user-graduate"></i> Student Management</h3>
+                    </div>
+                    
+                    <!-- Search Form -->
+                    <div class="search-section">
+                        <form id="studentSearchForm" class="search-form">
+                            <div class="search-input-group">
+                                <input type="text" id="usnInput" placeholder="Enter Student USN" required>
+                                <button type="submit" class="search-btn">
+                                    <i class="fas fa-search"></i> Search
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Student Details -->
+                    <div id="studentDetails" class="student-details" style="display: none;">
+                        <div class="student-card">
+                            <div class="student-header">
+                                <div class="student-image-container">
+                                    <img id="studentImage" src="https://via.placeholder.com/100/4CAF50/white?text=Student" alt="Student Picture" class="student-image">
+                                </div>
+                                <div class="student-info">
+                                    <h3 id="studentName">Student Name</h3>
+                                    <p id="studentUSN">USN: </p>
+                                    <p id="studentEmail">Email: </p>
+                                    <p id="studentDepartment">Department: </p>
+                                    <p id="studentYear">Year: </p>
+                                    <div class="student-points">
+                                        <i class="fas fa-star"></i>
+                                        <span>Total Points: <strong id="studentPoints">0</strong></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Student Grades and Activities -->
+                        <div class="student-content-tabs">
+                            <div class="student-tab-buttons">
+                                <button class="student-tab-btn active" data-tab="student-grades">
+                                    <i class="fas fa-medal"></i> AICTE Grades
+                                </button>
+                                <button class="student-tab-btn" data-tab="student-activities">
+                                    <i class="fas fa-calendar-alt"></i> Activities
+                                </button>
+                            </div>
+
+                            <!-- Student AICTE Grades -->
+                            <div id="student-grades" class="student-tab-content active">
+                                <div id="studentGradesList" class="grades-list">
+                                    <div class="loading">No student selected</div>
+                                </div>
+                            </div>
+
+                            <!-- Student Activities -->
+                            <div id="student-activities" class="student-tab-content">
+                                <div id="studentActivitiesList" class="activities-list">
+                                    <div class="loading">No student selected</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Events Tab -->
+                <div id="events" class="tab-content">
+                    <div class="content-header">
+                        <h3><i class="fas fa-calendar"></i> Event Management</h3>
+                        <button id="addEventBtn" class="add-btn">
+                            <i class="fas fa-plus"></i> Add New Event
+                        </button>
+                    </div>
+                    <div id="eventsList" class="events-list">
+                        <div class="loading">Loading events...</div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Modals -->
+    <!-- Add Event Modal -->
+    <div id="eventModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-calendar-plus"></i> <span id="eventModalTitle">Add Event</span></h3>
+                <span class="close" data-modal="eventModal">&times;</span>
+            </div>
+            <form id="eventForm">
+                <div class="form-content">
+                    <input type="hidden" id="eventId" name="eventId">
+                    <div class="form-group">
+                        <label for="eventTitle">Event Title:</label>
+                        <input type="text" id="eventTitle" name="title" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="eventDescription">Description:</label>
+                        <textarea id="eventDescription" name="description" rows="3" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="eventDate">Event Date & Time:</label>
+                        <input type="datetime-local" id="eventDate" name="eventDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="eventLocation">Location:</label>
+                        <input type="text" id="eventLocation" name="location" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="eventCategory">Category:</label>
+                        <select id="eventCategory" name="category" required>
+                            <option value="workshop">Workshop</option>
+                            <option value="seminar">Seminar</option>
+                            <option value="competition">Competition</option>
+                            <option value="meeting">Meeting</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Event Targeting Options -->
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" id="isOpenToAll" name="isOpenToAll" checked>
+                            Open to All Students
+                        </label>
+                    </div>
+                    
+                    <div id="targetingOptions" style="display: none;">
+                        <div class="form-group">
+                            <label for="startUSN">USN Range Start (e.g., 1MS21CS001):</label>
+                            <input type="text" id="startUSN" name="startUSN" placeholder="1MS21CS001">
+                        </div>
+                        <div class="form-group">
+                            <label for="endUSN">USN Range End (e.g., 1MS21CS100):</label>
+                            <input type="text" id="endUSN" name="endUSN" placeholder="1MS21CS100">
+                        </div>
+                        <div class="form-group">
+                            <label for="targetSemesters">Target Semesters (comma-separated, e.g., 3,4,5):</label>
+                            <input type="text" id="targetSemesters" name="targetSemesters" placeholder="3,4,5">
+                        </div>
+                        <div class="form-group">
+                            <label for="targetDepartments">Target Departments (comma-separated, e.g., CSE,ISE,ECE):</label>
+                            <input type="text" id="targetDepartments" name="targetDepartments" placeholder="CSE,ISE,ECE">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group" id="eventStatusGroup" style="display: none;">
+                        <label for="eventStatus">Status:</label>
+                        <select id="eventStatus" name="isActive">
+                            <option value="true">Active</option>
+                            <option value="false">Inactive</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="cancel-btn" data-modal="eventModal">Cancel</button>
+                    <button type="submit" class="submit-btn" id="eventSubmitBtn">Add Event</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Grade Status Modal -->
+    <div id="gradeStatusModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-edit"></i> Update Grade Status</h3>
+                <span class="close" data-modal="gradeStatusModal">&times;</span>
+            </div>
+            <form id="gradeStatusForm">
+                <div class="form-content">
+                    <input type="hidden" id="gradeId" name="gradeId">
+                    <div class="form-group">
+                        <label for="gradeActivityName">Activity:</label>
+                        <input type="text" id="gradeActivityName" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="gradePoints">Points:</label>
+                        <input type="number" id="gradePoints" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="gradeStatus">Status:</label>
+                        <select id="gradeStatus" name="status" required>
+                            <option value="pending">Pending</option>
+                            <option value="approved">Approved</option>
+                            <option value="rejected">Rejected</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="cancel-btn" data-modal="gradeStatusModal">Cancel</button>
+                    <button type="submit" class="submit-btn">Update Status</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Success/Error Messages -->
+    <div id="messageContainer" class="message-container"></div>
+
+    <script src="mentor_dashboard.js"></script>
+</body>
+</html>

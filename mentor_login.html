@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mentor Login</title>
+    <link rel="stylesheet" href="theme.css">
+    <link rel="stylesheet" href="mentor_login.css">
+</head>
+<body>
+    <div class="login-container">
+        <h2>Mentor Login</h2>
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button type="submit">Login</button>
+        </form>
+        <p id="message"></p>
+        <p>Don't have an account? <a href="/mentor-register">Register here</a></p>
+    </div>
+    <script src="mentor_login.js"></script>
+</body>
+</html>
